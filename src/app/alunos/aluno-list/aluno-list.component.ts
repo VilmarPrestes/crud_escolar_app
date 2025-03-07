@@ -1,17 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { AlunoService } from '../aluno.service';
 import { Aluno } from '../aluno.model';
+import {CommonModule} from '@angular/common';
+import {MatTableModule} from '@angular/material/table';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-aluno-list',
   templateUrl: './aluno-list.component.html',
+  imports: [CommonModule, MatTableModule],
   standalone: true,
   styleUrls: ['./aluno-list.component.css']
 })
 export class AlunoListComponent implements OnInit {
   alunos: Aluno[] = [];
 
-  constructor(private alunoService: AlunoService) { }
+  constructor(private alunoService: AlunoService, private router: Router) { }
 
   ngOnInit(): void {
     this.loadAlunos();
@@ -29,5 +33,9 @@ export class AlunoListComponent implements OnInit {
       () => this.loadAlunos(),
       error => console.error('Erro ao deletar aluno', error)
     );
+  }
+
+  editAluno(id: number): void {
+    this.router.navigate(['/alunos/editar', id]); // Navega para a página de edição
   }
 }

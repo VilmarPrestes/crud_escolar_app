@@ -1,14 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import { AlunoService } from '../aluno.service';
 import { Aluno } from '../aluno.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CursoService } from '../../cursos/curso.service';
 import { Curso } from '../../cursos/curso.model';
+import {CommonModule} from '@angular/common';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-aluno-form',
   standalone: true,
+  imports: [ CommonModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatButtonModule],
   templateUrl: './aluno-form.component.html',
   styleUrls: ['./aluno-form.component.css']
 })
@@ -21,7 +36,7 @@ export class AlunoFormComponent implements OnInit {
     private fb: FormBuilder,
     private alunoService: AlunoService,
     private cursoService: CursoService,
-    private router: Router,
+    public router: Router,
     private route: ActivatedRoute
   ) {
     this.form = this.fb.group({

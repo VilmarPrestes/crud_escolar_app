@@ -1,13 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import { CursoService } from '../curso.service';
 import { Curso } from '../curso.model';
 import { Router, ActivatedRoute } from '@angular/router';
+import {CommonModule} from '@angular/common';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-curso-form',
   templateUrl: './curso-form.component.html',
   standalone: true,
+  imports: [ CommonModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatButtonModule,
+    MatCheckboxModule],
+
   styleUrls: ['./curso-form.component.css']
 })
 export class CursoFormComponent implements OnInit {
@@ -17,7 +35,7 @@ export class CursoFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private cursoService: CursoService,
-    private router: Router,
+    public router: Router,
     private route: ActivatedRoute
   ) {
     this.form = this.fb.group({
