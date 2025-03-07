@@ -1,0 +1,21 @@
+<div>
+  <h2>{{ cursoId ? 'Editar Curso' : 'Novo Curso' }}</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input matInput placeholder="Nome" formControlName="nome">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="inicioAulasPicker" placeholder="Início das Aulas" formControlName="inicioAulas">
+      <mat-datepicker-toggle matSuffix [for]="inicioAulasPicker"></mat-datepicker-toggle>
+      <mat-datepicker #inicioAulasPicker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="fimAulasPicker" placeholder="Fim das Aulas" formControlName="fimAulas">
+      <mat-datepicker-toggle matSuffix [for]="fimAulasPicker"></mat-datepicker-toggle>
+      <mat-datepicker #fimAulasPicker></mat-datepicker>
+    </mat-form-field>
+    <mat-checkbox formControlName="ativo">Ativo</mat-checkbox>
+    <button mat-button type="submit">Salvar</button>
+    <button mat-button type="button" (click)="router.navigate(['/cursos'])">Cancelar</button>
+  </form>
+</div>

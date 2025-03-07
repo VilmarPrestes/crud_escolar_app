@@ -1,0 +1,35 @@
+<div>
+  <h2>Lista de Cursos</h2>
+  <table mat-table [dataSource]="cursos">
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef> Nome </th>
+      <td mat-cell *matCellDef="let curso"> {{curso.nome}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="inicioAulas">
+      <th mat-header-cell *matHeaderCellDef> Início das Aulas </th>
+      <td mat-cell *matCellDef="let curso"> {{curso.inicioAulas | date}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="fimAulas">
+      <th mat-header-cell *matHeaderCellDef> Fim das Aulas </th>
+      <td mat-cell *matCellDef="let curso"> {{curso.fimAulas | date}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ativo">
+      <th mat-header-cell *matHeaderCellDef> Ativo </th>
+      <td mat-cell *matCellDef="let curso"> {{curso.ativo ? 'Sim' : 'Não'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Ações </th>
+      <td mat-cell *matCellDef="let curso">
+        <button mat-button color="primary" (click)="editCurso(curso.id)">Editar</button>
+        <button mat-button color="warn" (click)="deleteCurso(curso.id)">Excluir</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['nome', 'inicioAulas', 'fimAulas', 'ativo', 'actions']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['nome', 'inicioAulas', 'fimAulas', 'ativo', 'actions'];"></tr>
+  </table>
+</div>
