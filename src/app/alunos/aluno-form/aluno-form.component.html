@@ -22,7 +22,9 @@
     </mat-form-field>
     <mat-form-field>
       <mat-select placeholder="Curso" formControlName="cursoId">
-        <mat-option *ngFor="let curso of cursos" [value]="curso.id">{{ curso.nome }}</mat-option>
+        <mat-option *ngFor="let curso of cursos$ | async" [value]="curso.id">
+          {{ curso.nome }}
+        </mat-option>
       </mat-select>
     </mat-form-field>
     <button mat-button type="submit">Salvar</button>

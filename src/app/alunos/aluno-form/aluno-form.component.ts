@@ -12,6 +12,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatButtonModule} from '@angular/material/button';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-aluno-form',
@@ -30,7 +31,7 @@ import {MatButtonModule} from '@angular/material/button';
 export class AlunoFormComponent implements OnInit {
   form: FormGroup;
   alunoId: number | null = null;
-  cursos: Curso[] = [];
+  cursos$: Observable<Curso[]>;
 
   constructor(
     private fb: FormBuilder,
@@ -61,10 +62,7 @@ export class AlunoFormComponent implements OnInit {
   }
 
   loadCursos(): void {
-    this.cursoService.getAll().subscribe(
-      cursos => this.cursos = cursos,
-      error => console.error('Erro ao carregar cursos', error)
-    );
+    this.cursos$ = this.cursoService.getAll();
   }
 
   onSubmit(): void {
